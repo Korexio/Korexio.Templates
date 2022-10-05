@@ -17,4 +17,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Korexio.Prototype\Korexio.Prototype.csproj" />
+  </ItemGroup>
+
 </Project>
