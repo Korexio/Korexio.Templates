@@ -122,8 +122,11 @@ jobs:
       - name: dotnet new prototype
         run: dotnet new prototype --output ./Artifacts/My.Demo --name My.Demo
 
+      - name: dotnet build
+        run: dotnet build ./Artifacts/My.Demo/Source/My.Demo.sln -p:TreatWarningsAsErrors=true
+
       - name: dotnet test
-        run: dotnet test ./Artifacts/My.Demo/Source/My.Demo.sln
+        run: dotnet test ./Artifacts/My.Demo/Source/My.Demo.sln --no-build
 
       - name: dotnet new --uninstall
         run: dotnet new --uninstall Korexio.Templates
