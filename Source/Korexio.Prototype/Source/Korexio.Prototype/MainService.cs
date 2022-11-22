@@ -25,11 +25,11 @@ public sealed class MainService : BackgroundService
 
   protected override async Task ExecuteAsync(CancellationToken stoppingToken)
   {
-    _logger.Started("Main Service");
+    _logger.LogStarted("Main Service");
 
-    _logger.UsingConfigurationValue(nameof(_configuration.Delay), _configuration.Delay);
+    _logger.LogUsingConfigurationValue(nameof(_configuration.Delay), _configuration.Delay);
     await Task.Delay(_configuration.Delay, stoppingToken).ConfigureAwait(false);
 
-    _logger.Stopped("Main Service");
+    _logger.LogStopped("Main Service");
   }
 }
