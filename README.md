@@ -7,7 +7,7 @@ A custom template for dotnet new.
 The templates can be installed via
 
 ```powershell
-dotnet new --install Korexio.Templates
+dotnet new install Korexio.Templates
 ```
 
 This will install the latest version of the NuGet package.
@@ -27,13 +27,13 @@ This will instantiate the template in the `./Artifacts/My.Demo` directory.
 First check which templates are installed
 
 ```powershell
-dotnet new --uninstall
+dotnet new uninstall
 ```
 
 then execute the displayed command to uninstall the templates
 
 ```powershell
-dotnet new --uninstall Korexio.Templates
+dotnet new uninstall Korexio.Templates
 ```
 
 ## References
