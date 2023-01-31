@@ -9,11 +9,17 @@ namespace Korexio.Prototype;
 
 public sealed class MainService : BackgroundService
 {
+  private readonly IHost _host;
   private readonly MainServiceConfiguration _configuration;
   private readonly ILogger _logger;
 
-  public MainService(IOptions<MainServiceConfiguration> options, ILogger<MainService> logger)
+  public MainService(IHost host, IOptions<MainServiceConfiguration> options, ILogger<MainService> logger)
   {
+    if (host == null)
+    {
+      throw new ArgumentNullException(nameof(host));
+    }
+
     if (options == null)
     {
       throw new ArgumentNullException(nameof(options));
@@ -24,6 +30,7 @@ public sealed class MainService : BackgroundService
       throw new ArgumentNullException(nameof(logger));
     }
 
+    _host = host;
     _configuration = options.Value;
     _logger = logger;
   }
@@ -36,5 +43,7 @@ public sealed class MainService : BackgroundService
     await Task.Delay(_configuration.Delay, stoppingToken).ConfigureAwait(false);
 
     _logger.LogStopped("Main Service");
+
+    await _host.StopAsync(stoppingToken).ConfigureAwait(false);
   }
 }
