@@ -19,6 +19,11 @@ public sealed class MainService : BackgroundService
       throw new ArgumentNullException(nameof(options));
     }
 
+    if (logger == null)
+    {
+      throw new ArgumentNullException(nameof(logger));
+    }
+
     _configuration = options.Value;
     _logger = logger;
   }
