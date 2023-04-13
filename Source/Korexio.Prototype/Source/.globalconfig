@@ -16,6 +16,9 @@ dotnet_analyzer_diagnostic.severity = warning
 # CA1005: Avoid excessive parameters on generic types
 dotnet_diagnostic.CA1005.severity = warning
 
+# CA1014: Mark assemblies with CLSCompliant
+dotnet_diagnostic.CA1014.severity = warning
+
 # CA1017: Mark assemblies with ComVisible
 dotnet_diagnostic.CA1017.severity = warning
 
