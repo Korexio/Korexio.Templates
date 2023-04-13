@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace Korexio.Prototype.CommandLine;
@@ -13,15 +12,7 @@ internal sealed class Program
     {
       using var host = Host
         .CreateDefaultBuilder(args)
-        .ConfigureServices(services =>
-        {
-          _ = services.AddHostedService<MainService>();
-
-          _ = services
-            .AddOptions<MainServiceConfiguration>()
-            .BindConfiguration("Korexio.Prototype:MainServiceConfiguration")
-            .ValidateDataAnnotations();
-        })
+        .UseMainService()
         .Build();
 
       await host.RunAsync().ConfigureAwait(false);
