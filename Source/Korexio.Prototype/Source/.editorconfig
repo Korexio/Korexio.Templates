@@ -1,93 +1,501 @@
+###############################################################################################################################
+# C#
+###############################################################################################################################
+
 [*.cs]
 
-# IDE0008: Use explicit type
-csharp_style_var_for_built_in_types = true
+# Code Quality ################################################################################################################
 
-# IDE0008: Use explicit type
-csharp_style_var_when_type_is_apparent = true
+# Set the default rule severity for all analyzer rules to warning.
+# Note: When you configure the severity level for multiple rules with a single entry, 
+#       either for a category of rules or for all rules, the severity only applies to rules that are enabled by default.
+dotnet_analyzer_diagnostic.severity = warning
 
-# IDE0008: Use explicit type
-csharp_style_var_elsewhere = true
+# Code Style: Symbol Groups ###################################################################################################
 
-# IDE0016: Use 'throw' expression
-csharp_style_throw_expression = false
+dotnet_naming_symbols.namespace.applicable_kinds = namespace
+dotnet_naming_symbols.namespace.applicable_accessibilities = *
+dotnet_naming_symbols.namespace.required_modifiers =
 
-# IDE0160: Convert to block scoped namespace
-csharp_style_namespace_declarations = file_scoped
+dotnet_naming_symbols.class.applicable_kinds = class
+dotnet_naming_symbols.class.applicable_accessibilities = *
+dotnet_naming_symbols.class.required_modifiers =
 
+dotnet_naming_symbols.struct.applicable_kinds = struct
+dotnet_naming_symbols.struct.applicable_accessibilities = *
+dotnet_naming_symbols.struct.required_modifiers =
 
-# Code Style: Naming Rules
+dotnet_naming_symbols.interface.applicable_kinds = interface
+dotnet_naming_symbols.interface.applicable_accessibilities = *
+dotnet_naming_symbols.interface.required_modifiers =
 
-dotnet_naming_rule.field.severity = suggestion
-dotnet_naming_rule.field.symbols = field
-dotnet_naming_rule.field.style = field
+dotnet_naming_symbols.enum.applicable_kinds = enum
+dotnet_naming_symbols.enum.applicable_accessibilities = *
+dotnet_naming_symbols.enum.required_modifiers =
 
-dotnet_naming_rule.field.severity = suggestion
-dotnet_naming_rule.field.symbols = static_readonly_property
-dotnet_naming_rule.field.style = pascal_case
+dotnet_naming_symbols.property.applicable_kinds = property
+dotnet_naming_symbols.property.applicable_accessibilities = *
+dotnet_naming_symbols.property.required_modifiers =
 
-dotnet_naming_rule.field.severity = suggestion
-dotnet_naming_rule.field.symbols = const
-dotnet_naming_rule.field.style = pascal_case
-
-# Code Style: Symbol Groups
+dotnet_naming_symbols.method.applicable_kinds = method
+dotnet_naming_symbols.method.applicable_accessibilities = *
+dotnet_naming_symbols.method.required_modifiers =
 
 dotnet_naming_symbols.field.applicable_kinds = field
 dotnet_naming_symbols.field.applicable_accessibilities = *
 dotnet_naming_symbols.field.required_modifiers =
 
-dotnet_naming_symbols.static_readonly_property.applicable_kinds = property
-dotnet_naming_symbols.static_readonly_property.applicable_accessibilities = *
-dotnet_naming_symbols.static_readonly_property.required_modifiers = static,readonly
+dotnet_naming_symbols.event.applicable_kinds = event
+dotnet_naming_symbols.event.applicable_accessibilities = *
+dotnet_naming_symbols.event.required_modifiers =
 
-dotnet_naming_symbols.const.applicable_kinds = field
-dotnet_naming_symbols.const.applicable_accessibilities = *
-dotnet_naming_symbols.const.required_modifiers = const
+dotnet_naming_symbols.delegate.applicable_kinds = delegate
+dotnet_naming_symbols.delegate.applicable_accessibilities = *
+dotnet_naming_symbols.delegate.required_modifiers =
 
-# Code Style: Naming Styles
+dotnet_naming_symbols.parameter.applicable_kinds = parameter
+dotnet_naming_symbols.parameter.applicable_accessibilities = *
+dotnet_naming_symbols.parameter.required_modifiers =
 
-dotnet_naming_style.field.required_prefix = _
-dotnet_naming_style.field.required_suffix =
-dotnet_naming_style.field.word_separator =
-dotnet_naming_style.field.capitalization = pascal_case
+dotnet_naming_symbols.type_parameter.applicable_kinds = type_parameter
+dotnet_naming_symbols.type_parameter.applicable_accessibilities = *
+dotnet_naming_symbols.type_parameter.required_modifiers =
 
+dotnet_naming_symbols.local.applicable_kinds = local
+dotnet_naming_symbols.local.applicable_accessibilities = *
+dotnet_naming_symbols.local.required_modifiers =
+
+dotnet_naming_symbols.local_function.applicable_kinds = local_function
+dotnet_naming_symbols.local_function.applicable_accessibilities = *
+dotnet_naming_symbols.local_function.required_modifiers =
+
+# Code Style: Naming Styles ###################################################################################################
+
+dotnet_naming_style.pascal_case.capitalization = pascal_case
 dotnet_naming_style.pascal_case.required_prefix =
 dotnet_naming_style.pascal_case.required_suffix =
 dotnet_naming_style.pascal_case.word_separator =
-dotnet_naming_style.pascal_case.capitalization = pascal_case
 
+dotnet_naming_style.camel_case.capitalization = camel_case
+dotnet_naming_style.camel_case.required_prefix =
+dotnet_naming_style.camel_case.required_suffix =
+dotnet_naming_style.camel_case.word_separator =
+
+dotnet_naming_style.interface.capitalization = pascal_case
+dotnet_naming_style.interface.required_prefix = I
+dotnet_naming_style.interface.required_suffix =
+dotnet_naming_style.interface.word_separator =
+
+dotnet_naming_style.field.capitalization = pascal_case
+dotnet_naming_style.field.required_prefix = _
+dotnet_naming_style.field.required_suffix =
+dotnet_naming_style.field.word_separator =
+
+dotnet_naming_style.type_parameter.capitalization = pascal_case
+dotnet_naming_style.type_parameter.required_prefix = T
+dotnet_naming_style.type_parameter.required_suffix =
+dotnet_naming_style.type_parameter.word_separator =
+
+# Code Style: Naming Rules ####################################################################################################
+
+dotnet_naming_rule.namespace.symbols = namespace
+dotnet_naming_rule.namespace.style = pascal_case
+dotnet_naming_rule.namespace.severity = warning
+
+dotnet_naming_rule.class.symbols = class
+dotnet_naming_rule.class.style = pascal_case
+dotnet_naming_rule.class.severity = warning
+
+dotnet_naming_rule.struct.symbols = struct
+dotnet_naming_rule.struct.style = pascal_case
+dotnet_naming_rule.struct.severity = warning
+
+dotnet_naming_rule.interface.symbols = interface
+dotnet_naming_rule.interface.style = interface
+dotnet_naming_rule.interface.severity = warning
+
+dotnet_naming_rule.enum.symbols = enum
+dotnet_naming_rule.enum.style = pascal_case
+dotnet_naming_rule.enum.severity = warning
+
+dotnet_naming_rule.property.symbols = property
+dotnet_naming_rule.property.style = pascal_case
+dotnet_naming_rule.property.severity = warning
+
+dotnet_naming_rule.method.symbols = method
+dotnet_naming_rule.method.style = pascal_case
+dotnet_naming_rule.method.severity = warning
+
+dotnet_naming_rule.field.symbols = field
+dotnet_naming_rule.field.style = field
+dotnet_naming_rule.field.severity = warning
+
+dotnet_naming_rule.event.symbols = event
+dotnet_naming_rule.event.style = pascal_case
+dotnet_naming_rule.event.severity = warning
+
+dotnet_naming_rule.delegate.symbols = delegate
+dotnet_naming_rule.delegate.style = pascal_case
+dotnet_naming_rule.delegate.severity = warning
+
+dotnet_naming_rule.parameter.symbols = parameter
+dotnet_naming_rule.parameter.style = camel_case
+dotnet_naming_rule.parameter.severity = warning
+
+dotnet_naming_rule.type_parameter.symbols = type_parameter
+dotnet_naming_rule.type_parameter.style = type_parameter
+dotnet_naming_rule.type_parameter.severity = warning
+
+dotnet_naming_rule.local.symbols = local
+dotnet_naming_rule.local.style = camel_case
+dotnet_naming_rule.local.severity = warning
+
+dotnet_naming_rule.local_function.symbols = local_function
+dotnet_naming_rule.local_function.style = pascal_case
+dotnet_naming_rule.local_function.severity = warning
+
+# Code Style: Rule Options ####################################################################################################
+
+# IDE0003: Remove this or Me qualification
+# IDE0009: Add this or Me qualification
+
+dotnet_style_qualification_for_field = false:warning
+dotnet_style_qualification_for_property = false:warning
+dotnet_style_qualification_for_method = false:warning
+dotnet_style_qualification_for_event = false:warning
+
+# IDE0007: Use var instead of explicit type
+# IDE0008: Use explicit type instead of var
+
+csharp_style_var_for_built_in_types = true:warning
+csharp_style_var_when_type_is_apparent = true:warning
+csharp_style_var_elsewhere = true:warning
+
+# IDE0011: Add braces
+
+csharp_prefer_braces = true:warning
+
+# IDE0016: Use throw expression
+
+csharp_style_throw_expression = true:warning
+
+# IDE0017: Use object initializers
+
+dotnet_style_object_initializer = true:warning
+
+# IDE0018: Inline variable declaration
+
+csharp_style_inlined_variable_declaration = true:warning
+
+# IDE0019: Use pattern matching to avoid as followed by a null check
+
+csharp_style_pattern_matching_over_as_with_null_check = true:warning
+
+# IDE0020: Use pattern matching to avoid is check followed by a cast (with variable)
+# IDE0038: Use pattern matching to avoid is check followed by a cast (without variable)
+
+csharp_style_pattern_matching_over_is_with_cast_check = true:warning
+
+# IDE0021: Use expression body for constructors
+
+csharp_style_expression_bodied_constructors = false:warning
+
+# IDE0022: Use expression body for methods
+
+csharp_style_expression_bodied_methods = false:warning
+
+# IDE0023: Use expression body for conversion operators
+# IDE0024: Use expression body for operators
+
+csharp_style_expression_bodied_operators = true:warning
+
+# IDE0025: Use expression body for properties
+
+csharp_style_expression_bodied_properties = true:warning
+
+# IDE0026: Use expression body for indexers
+
+csharp_style_expression_bodied_indexers = true:warning
+
+# IDE0027: Use expression body for accessors
+
+csharp_style_expression_bodied_accessors = false:warning
+
+# IDE0028: Use collection initializers
+
+dotnet_style_collection_initializer = true:warning
+
+# IDE0029: Use coalesce expression (non-nullable types)
+# IDE0030: Use coalesce expression (nullable types)
+
+dotnet_style_coalesce_expression = true:warning
+
+# IDE0031: Use null propagation
+
+dotnet_style_null_propagation = true:warning
+
+# IDE0032: Use auto property
+
+dotnet_style_prefer_auto_properties = true:warning
+
+# IDE0033: Use explicitly provided tuple name
+
+dotnet_style_explicit_tuple_names = true:warning
+
+# IDE0034: Simplify default expression
+
+csharp_prefer_simple_default_expression = true:warning
+
+# IDE0036: Order modifiers
+
+csharp_preferred_modifier_order = true:warning
+
+# IDE0037: Use inferred member name
+
+dotnet_style_prefer_inferred_tuple_names = true:warning
+dotnet_style_prefer_inferred_anonymous_type_member_names = true:warning
+
+# IDE0039: Use local function instead of lambda
+
+csharp_style_prefer_local_over_anonymous_function = true:warning
+
+# IDE0040: Add accessibility modifiers
+
+dotnet_style_require_accessibility_modifiers = never:warning
+
+# IDE0041: Use is null check
+
+dotnet_style_prefer_is_null_check_over_reference_equality_method = true:warning
+
+# IDE0042: Deconstruct variable declaration
+
+csharp_style_deconstructed_variable_declaration = true:warning
+
+# IDE0044: Add readonly modifier
+
+dotnet_style_readonly_field = true:warning
+
+# IDE0045: Use conditional expression for assignment
+
+dotnet_style_prefer_conditional_expression_over_assignment = true:warning
+
+# IDE0046: Use conditional expression for return
+
+dotnet_style_prefer_conditional_expression_over_return = false:warning
+
+# IDE0047: Remove unnecessary parentheses
+# IDE0048: Add parentheses for clarity
+
+dotnet_style_parentheses_in_arithmetic_binary_operators = always_for_clarity:warning
+dotnet_style_parentheses_in_relational_binary_operators = always_for_clarity:warning
+dotnet_style_parentheses_in_other_binary_operators = always_for_clarity:warning
+dotnet_style_parentheses_in_other_operators = always_for_clarity:warning
+
+# IDE0049: Use language keywords instead of framework type names for type references
+
+dotnet_style_predefined_type_for_locals_parameters_members = true:warning
+dotnet_style_predefined_type_for_member_access = true:warning
+
+# IDE0053: Use expression body for lambdas
+
+csharp_style_expression_bodied_lambdas = true:warning
+
+# IDE0054: Use compound assignment
+# IDE0074: Use coalesce compound assignment
+
+dotnet_style_prefer_compound_assignment = true:warning
+
+# IDE0055	Fix formatting
+
+dotnet_sort_system_directives_first = true
+dotnet_separate_import_directive_groups = false
+
+csharp_new_line_before_open_brace = types,methods,properties,control_blocks
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+csharp_new_line_before_members_in_object_initializers = true
+csharp_new_line_before_members_in_anonymous_types = true
+csharp_new_line_between_query_expression_clauses = true
+
+csharp_indent_case_contents = true
+csharp_indent_switch_labels = true
+csharp_indent_labels = flush_left
+csharp_indent_block_contents = true
+csharp_indent_braces = false
+csharp_indent_case_contents_when_block = false
+
+csharp_space_after_cast = true
+csharp_space_after_keywords_in_control_flow_statements = true
+csharp_space_between_parentheses = false
+csharp_space_before_colon_in_inheritance_clause = true
+csharp_space_after_colon_in_inheritance_clause = true
+csharp_space_around_binary_operators = before_and_after
+csharp_space_between_method_declaration_parameter_list_parentheses = false
+csharp_space_between_method_declaration_empty_parameter_list_parentheses = false
+csharp_space_between_method_declaration_name_and_open_parenthesis = false
+csharp_space_between_method_call_parameter_list_parentheses = false
+csharp_space_between_method_call_empty_parameter_list_parentheses = false
+csharp_space_between_method_call_name_and_opening_parenthesis = false
+csharp_space_after_comma = true
+csharp_space_before_comma = false
+csharp_space_after_dot = false
+csharp_space_before_dot = false
+csharp_space_after_semicolon_in_for_statement = true
+csharp_space_before_semicolon_in_for_statement = false
+csharp_space_around_declaration_statements = false
+csharp_space_before_open_square_brackets = false
+csharp_space_between_empty_square_brackets = false
+csharp_space_between_square_brackets = false
+
+csharp_preserve_single_line_statements = true
+csharp_preserve_single_line_blocks = true
+
+# IDE0056: Use index operator
+
+csharp_style_prefer_index_operator = true:warning
+
+# IDE0057: Use range operator
+
+csharp_style_prefer_range_operator = true:warning
+
+# IDE0058: Remove unused expression value
+
+csharp_style_unused_value_expression_statement_preference = discard_variable:warning
+
+# IDE0059: Remove unnecessary value assignment
+
+csharp_style_unused_value_assignment_preference = discard_variable:warning
+
+# IDE0060: Remove unused parameter
+
+dotnet_code_quality_unused_parameters = non_public:warning
+
+# IDE0061: Use expression body for local functions
+
+csharp_style_expression_bodied_local_functions = true:warning
+
+# IDE0062: Make local function static
+
+csharp_prefer_static_local_function = true:warning
+
+# IDE0063: Use simple using statement
+
+csharp_prefer_simple_using_statement = true:warning
+
+# IDE0065: using directive placement
+
+csharp_using_directive_placement = outside_namespace:warning
+
+# IDE0066: Use switch expression
+
+csharp_style_prefer_switch_expression = true:warning
+
+# IDE0071: Simplify interpolation
+
+dotnet_style_prefer_simplified_interpolation = true:warning
+
+# IDE0073: Use file header
+
+file_header_template = unset
+
+# IDE0075: Simplify conditional expression
+
+dotnet_style_prefer_simplified_boolean_expressions = true:warning
+
+# IDE0078: Use pattern matching
+
+csharp_style_prefer_pattern_matching = true:warning
+
+# IDE0079: Remove unnecessary suppression
+
+dotnet_remove_unnecessary_suppression_exclusions = true:warning
+
+# IDE0083: Use pattern matching (not operator)
+
+csharp_style_prefer_not_pattern = true:warning
+
+# IDE0090: Simplify new expression
+
+csharp_style_implicit_object_creation_when_type_is_apparent = true:warning
+
+# IDE0130: Namespace does not match folder structure
+
+dotnet_style_namespace_match_folder = true:warning
+
+# IDE0150: Prefer null check over type check
+
+csharp_style_prefer_null_check_over_type_check = true:warning
+
+# IDE0160: Use block-scoped namespace
+# IDE0161: Use file-scoped namespace
+
+csharp_style_namespace_declarations = file_scoped:warning
+
+# IDE0170: Simplify property pattern
+
+csharp_style_prefer_extended_property_pattern = true:warning
+
+# IDE0180: Use tuple to swap values
+
+csharp_style_prefer_tuple_swap = true:warning
+
+# IDE0210: Convert to top-level statements
+
+csharp_style_prefer_top_level_statements = false:warning
+
+# IDE1005: Use conditional delegate call
+
+csharp_style_conditional_delegate_call = true:warning
+
+# Undocumented (.NET)
+
+dotnet_style_operator_placement_when_wrapping = beginning_of_line:warning
+dotnet_style_allow_multiple_blank_lines_experimental = false:warning
+dotnet_style_allow_statement_immediately_after_block_experimental = false:warning
+
+# Undocumented (C#)
+
+csharp_style_prefer_method_group_conversion = true:warning
+csharp_style_prefer_utf8_string_literals = true:warning
+csharp_style_prefer_readonly_struct = true:warning
+csharp_style_prefer_readonly_struct_member = true:warning
+csharp_style_allow_blank_line_after_token_in_arrow_expression_clause_experimental = true:warning
+csharp_style_allow_blank_line_after_token_in_conditional_expression_experimental = true:warning
+csharp_style_allow_blank_line_after_colon_in_constructor_initializer_experimental = true:warning
+csharp_style_allow_blank_lines_between_consecutive_braces_experimental = false:warning
+csharp_style_allow_embedded_statements_on_same_line_experimental = true:warning
+
+
+###############################################################################################################################
+# C# / Tests
+###############################################################################################################################
 
 [*_Tests.cs]
+
+# Code Quality ################################################################################################################
 
 # CA1707: Identifiers should not contain underscores
 dotnet_diagnostic.CA1707.severity = none
 
-# Naming Rule: Test Class
+# Code Style: Naming Styles ###################################################################################################
 
-dotnet_naming_rule.method_should_be_test_class.severity = suggestion
-dotnet_naming_rule.method_should_be_test_class.symbols = test_class
-dotnet_naming_rule.method_should_be_test_class.style = test_class
-
-dotnet_naming_symbols.test_class.applicable_kinds = class
-dotnet_naming_symbols.test_class.applicable_accessibilities = public
-dotnet_naming_symbols.test_class.required_modifiers =
-
+dotnet_naming_style.test_class.capitalization = pascal_case
 dotnet_naming_style.test_class.required_prefix =
 dotnet_naming_style.test_class.required_suffix = _Tests
-dotnet_naming_style.test_class.word_separator =
-dotnet_naming_style.test_class.capitalization = pascal_case
+dotnet_naming_style.test_class.word_separator = _
 
-# Naming Rule: Test Method
-
-dotnet_naming_rule.method_should_be_test_method.severity = suggestion
-dotnet_naming_rule.method_should_be_test_method.symbols = test_method
-dotnet_naming_rule.method_should_be_test_method.style = test_method
-
-dotnet_naming_symbols.test_method.applicable_kinds = method
-dotnet_naming_symbols.test_method.applicable_accessibilities = public
-dotnet_naming_symbols.test_method.required_modifiers =
-
+dotnet_naming_style.test_method.capitalization = pascal_case
 dotnet_naming_style.test_method.required_prefix =
 dotnet_naming_style.test_method.required_suffix =
 dotnet_naming_style.test_method.word_separator = _
-dotnet_naming_style.test_method.capitalization = pascal_case
+
+# Code Style: Naming Rules ####################################################################################################
+
+dotnet_naming_rule.class.symbols = class
+dotnet_naming_rule.class.style = test_class
+dotnet_naming_rule.class.severity = warning
+
+dotnet_naming_rule.method.symbols = method
+dotnet_naming_rule.method.style = test_method
+dotnet_naming_rule.method.severity = warning
