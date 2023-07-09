@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace Korexio.Prototype.CommandLine;
 
-internal sealed class Program
+internal static class Program
 {
   private static async Task<int> Main(string[] args)
   {
