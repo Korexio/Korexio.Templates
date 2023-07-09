@@ -166,7 +166,15 @@ jobs:
         run: .\.sonar\scanner\dotnet-sonarscanner begin /k:"Korexio_Korexio.Templates" /o:"korexio" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           
       - name: 'Test: dotnet build'
-        run: dotnet build ./Artifacts/My.Demo/Source/My.Demo.sln -p:TreatWarningsAsErrors=true
+        run: dotnet build ./Artifacts/My.Demo/Source/My.Demo.sln -p:TreatWarningsAsErrors=true -p:ReportAnalyzer=true -binaryLogger:./Artifacts/My.Demo/Artifacts/msbuild.binlog
+
+      - name: Upload My.Demo Build Log
+        uses: actions/upload-artifact@v3
+        with:
+          name:  My.Demo Build Log
+          path: ./Artifacts/My.Demo/Artifacts/msbuild.binlog
+          if-no-files-found: error
+          retention-days: 1
 
       - name: 'Test: dotnet test'
         run: dotnet test ./Artifacts/My.Demo/Source/My.Demo.sln --no-build
