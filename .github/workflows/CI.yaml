@@ -1,12 +1,15 @@
 name: Continous Integration (CI)
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - 'version/[0-9]+.[0-9]+.[0-9]+'
+      - 'wip/sonarcloud'
   pull_request:
     branches:
       - 'version/[0-9]+.[0-9]+.[0-9]+'
+      - 'wip/sonarcloud'
 
 defaults:
   run:
