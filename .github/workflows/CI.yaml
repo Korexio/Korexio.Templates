@@ -153,10 +153,10 @@ jobs:
           name: NuGet Package
           path: ./Artifacts/Korexio.Templates/bin
 
-      - name: dotnet new install
+      - name: 'Test: dotnet new install'
         run: dotnet new install ./Artifacts/Korexio.Templates/bin/Korexio.Templates.*.nupkg
 
-      - name: dotnet new prototype
+      - name: 'Test: dotnet new prototype'
         run: dotnet new prototype --output ./Artifacts/My.Demo --name My.Demo
 
       - name: Begin SonarCloud Analysis
@@ -165,10 +165,10 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: .\.sonar\scanner\dotnet-sonarscanner begin /k:"Korexio_Korexio.Templates" /o:"korexio" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           
-      - name: dotnet build
+      - name: 'Test: dotnet build'
         run: dotnet build ./Artifacts/My.Demo/Source/My.Demo.sln -p:TreatWarningsAsErrors=true
 
-      - name: dotnet test
+      - name: 'Test: dotnet test'
         run: dotnet test ./Artifacts/My.Demo/Source/My.Demo.sln --no-build
 
       - name: End SonarCloud Analysis
@@ -177,7 +177,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
           
-      - name: dotnet new uninstall
+      - name: 'Test: dotnet new uninstall'
         run: dotnet new uninstall Korexio.Templates
 
   Publish:
