@@ -18,7 +18,7 @@ defaults:
 jobs:
 
   Build:
-    runs-on: ubuntu-22.04
+    runs-on: windows-latest
     steps:
 
       - name: checkout
@@ -54,7 +54,7 @@ jobs:
         if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
         run: |
           New-Item -Path .\.sonar\scanner -ItemType Directory
-          dotnet tool update dotnet-sonarscanner --version 5.13.0 --tool-path .\.sonar\scanner
+          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
 
       - name: dotnet pack
         env:
@@ -137,7 +137,7 @@ jobs:
 
   Test:
     needs: Build
-    runs-on: ubuntu-22.04
+    runs-on: windows-latest
     steps:
 
       - name: setup-dotnet-7.0
