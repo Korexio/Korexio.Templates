@@ -15,24 +15,9 @@ public sealed class MainService : BackgroundService
 
   public MainService(IHost host, IOptions<MainServiceConfiguration> options, ILoggerFactory loggerFactory)
   {
-    if (host == null)
-    {
-      throw new ArgumentNullException(nameof(host));
-    }
-
-    if (options == null)
-    {
-      throw new ArgumentNullException(nameof(options));
-    }
-
-    if (loggerFactory == null)
-    {
-      throw new ArgumentNullException(nameof(loggerFactory));
-    }
-
-    _Host = host;
-    _Configuration = options.Value;
-    _LoggerFactory = loggerFactory;
+    _Host = host ?? throw new ArgumentNullException(nameof(host));
+    _Configuration = (options != null) ? options.Value : throw new ArgumentNullException(nameof(options));
+    _LoggerFactory = loggerFactory ?? throw new ArgumentNullException(nameof(loggerFactory));
   }
 
   protected override async Task ExecuteAsync(CancellationToken stoppingToken)

@@ -1,6 +1,6 @@
+using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 
 namespace Korexio.Prototype;
 
@@ -13,14 +13,13 @@ public static class MainServiceExtensionMethods
       throw new ArgumentNullException(nameof(hostBuilder));
     }
 
-    return hostBuilder.ConfigureServices((hostBuilderContext, serviceCollection) =>
-     {
-       _ = serviceCollection.AddHostedService<MainService>();
+    return hostBuilder.ConfigureServices((hostBuilderContext, serviceCollection) => {
+      _ = serviceCollection.AddHostedService<MainService>();
 
-       _ = serviceCollection
-         .AddOptions<MainServiceConfiguration>()
-         .BindConfiguration("Korexio.Prototype:MainServiceConfiguration")
-         .ValidateDataAnnotations();
-     });
+      _ = serviceCollection
+            .AddOptions<MainServiceConfiguration>()
+            .BindConfiguration("Korexio.Prototype:MainServiceConfiguration")
+            .ValidateDataAnnotations();
+    });
   }
 }
