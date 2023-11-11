@@ -261,7 +261,7 @@ csharp_style_prefer_local_over_anonymous_function = true:warning
 
 # IDE0040: Add accessibility modifiers
 
-dotnet_style_require_accessibility_modifiers = never:warning
+dotnet_style_require_accessibility_modifiers = for_non_interface_members:warning
 
 # IDE0041: Use is null check
 
