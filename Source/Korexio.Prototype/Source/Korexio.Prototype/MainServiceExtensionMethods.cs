@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace Korexio.Prototype;
 
-public static class MainServiceExtensionMethods
+internal static class MainServiceExtensionMethods
 {
   public static IHostBuilder UseMainService(this IHostBuilder hostBuilder)
   {

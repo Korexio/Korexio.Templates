@@ -2,7 +2,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Korexio.Prototype;
 
-public static partial class LoggerExtensionMethods
+internal static partial class LoggerExtensionMethods
 {
   [LoggerMessage(EventId = 100, Message = "'{Name}' started.")]
   public static partial void LogStarted(this ILogger logger, string name, LogLevel level = LogLevel.Information);

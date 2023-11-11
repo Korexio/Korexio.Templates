@@ -5,8 +5,14 @@ using Xunit;
 
 namespace Korexio.Prototype.Tests;
 
+/// <summary>
+/// Defines tests for the <see cref="MainServiceConfiguration"/> class.
+/// </summary>
 public class MainServiceConfiguration_Tests
 {
+  /// <summary>
+  /// Verifies that an instance of the <see cref="MainServiceConfiguration"/> class can be validated.
+  /// </summary>
   [Fact]
   public void MainServiceConfiguration_Can_Be_Validated()
   {

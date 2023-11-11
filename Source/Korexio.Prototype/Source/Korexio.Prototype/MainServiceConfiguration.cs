@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace Korexio.Prototype;
 
-public class MainServiceConfiguration : IValidatableObject
+internal class MainServiceConfiguration : IValidatableObject
 {
   [Range(1, 10)]
   public int Count { get; init; }

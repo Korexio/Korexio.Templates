@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Korexio.Prototype.CommandLine": {
+    "Korexio.Prototype": {
       "commandName": "Project",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"

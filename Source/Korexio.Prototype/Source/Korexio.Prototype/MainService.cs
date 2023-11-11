@@ -7,7 +7,7 @@ using Microsoft.Extensions.Options;
 
 namespace Korexio.Prototype;
 
-public sealed class MainService : BackgroundService
+internal sealed class MainService : BackgroundService
 {
   private readonly IHost _Host;
   private readonly MainServiceConfiguration _Configuration;
