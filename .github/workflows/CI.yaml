@@ -1,0 +1,139 @@
+name: Continous Integration (CI)
+
+on:
+  push:
+    branches:
+      - 'version/[0-9]+.[0-9]+.[0-9]+'
+  pull_request:
+    branches:
+      - 'version/[0-9]+.[0-9]+.[0-9]+'
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+
+  Build:
+    runs-on: ubuntu-22.04
+    steps:
+
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: setup-dotnet
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 6.0.x
+
+      - name: dotnet pack
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $WarningPreference = 'Continue'
+          $InformationPreference = 'Continue'
+
+          if ($env:GITHUB_BASE_REF) {
+
+            # The name of the base ref or target branch of the pull request in a workflow run.
+            # This is only set when the event that triggers a workflow run is either pull_request or pull_request_target.
+            $ref = $env:GITHUB_BASE_REF
+
+          }
+          else {
+
+            # The fully-formed ref of the branch or tag that triggered the workflow run.
+            # For workflows triggered by push, this is the branch or tag ref that was pushed.
+            # For workflows triggered by pull_request, this is the pull request merge branch.
+            # For workflows triggered by release, this is the release tag created.
+            # For other triggers, this is the branch or tag ref that triggered the workflow run.
+            # This is only set if a branch or tag is available for the event type.
+            # The ref given is fully-formed, meaning that for branches the format is refs/heads/<branch_name>, for pull requests it is refs/pull/<pr_number>/merge, and for tags it is refs/tags/<tag_name>.
+            $ref = $env:GITHUB_REF
+
+          }
+
+          $SemanticVersionPattern = '/?version/(?<major>0|[1-9]\d*)\.(?<minor>0|[1-9]\d*)\.(?<patch>0|[1-9]\d*)(?:-(?<prerelease>(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+(?<buildmetadata>[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?(?:/|$)'
+          if ($ref -match $SemanticVersionPattern) {
+
+            Write-Information "'$ref' is a semantic version branch."
+
+            $major = $Matches['major']
+            $minor = $Matches['minor']
+            $patch = $Matches['patch']
+            $prerelease = $Matches['prerelease']
+            $buildmetadata = $Matches['buildmetadata']
+
+            $env:VersionPrefix = "$major.$minor.$patch"
+
+          }
+          else {
+
+            Write-Warning "'$ref' is not a semantic version branch."
+
+          }
+
+          if (!$prerelease) {
+            # Ensure that we always create a pre-release version and newer builds have precedence over older builds.
+            $prerelease = "ci.$([DateTime]::UtcNow.ToString('yyyyMMddhhmmss'))"
+          }
+
+          if (!$buildmetadata) {
+            $buildmetadata = "$(git rev-parse --verify 'HEAD^{commit}')".Trim()
+          }
+
+          $env:VersionSuffix = "$prerelease+$buildmetadata"
+
+          if ($env:VersionPrefix) {
+            Write-Information "Version Prefix: '$env:VersionPrefix'"
+          }
+          if ($env:VersionSuffix) {
+            Write-Information "Version Suffix: '$env:VersionSuffix'"
+          }
+
+          dotnet pack ./Source/Korexio.Templates.csproj
+
+      - name: upload-artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: NuGet Package
+          path: ./Artifacts/Korexio.Templates/bin/Korexio.Templates.*.nupkg
+          if-no-files-found: error
+          retention-days: 1
+
+  Test:
+    needs: Build
+    runs-on: ubuntu-22.04
+    steps:
+
+      - name: download-artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: NuGet Package
+          path: ./Artifacts/Korexio.Templates/bin
+
+      - name: dotnet new --install
+        run: dotnet new --install ./Artifacts/Korexio.Templates/bin/Korexio.Templates.*.nupkg
+
+      - name: dotnet new prototype
+        run: dotnet new prototype --output ./Artifacts/Test.Prototype --name Test.Prototype
+
+      - name: dotnet new --uninstall
+        run: dotnet new --uninstall Korexio.Templates
+
+  Publish:
+    needs:
+      - Build
+      - Test
+    runs-on: ubuntu-22.04
+    steps:
+
+      - name: download-artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: NuGet Package
+          path: ./Artifacts/Korexio.Templates/bin
+
+      - name: dotnet nuget push
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: dotnet nuget push ./Artifacts/Korexio.Templates/bin/Korexio.Templates.*.nupkg --api-key $env:NUGET_API_KEY --source https://api.nuget.org/v3/index.json
