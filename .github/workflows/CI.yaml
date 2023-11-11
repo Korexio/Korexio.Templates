@@ -105,7 +105,8 @@ jobs:
           if-no-files-found: error
           retention-days: 1
 
-  Test .NET 7.0:
+  Test-dotnet-7:
+    name: Test (.NET 7.0)
     needs: Build
     runs-on: ubuntu-22.04
     steps:
@@ -136,7 +137,8 @@ jobs:
       - name: dotnet new uninstall
         run: dotnet new uninstall Korexio.Templates
 
-  Test .NET 6.0:
+  Test-dotnet-6:
+    name: Test (.NET 6.0)
     needs: Build
     runs-on: ubuntu-22.04
     steps:
@@ -170,8 +172,8 @@ jobs:
   Publish:
     needs:
       - Build
-      - Test .NET 7.0
-      - Test .NET 6.0
+      - Test-dotnet-7
+      - Test-dotnet-6
     runs-on: ubuntu-22.04
     steps:
 
