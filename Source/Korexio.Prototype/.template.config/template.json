@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Korexio",
+  "classifications": [
+    "Solution",
+    "Common",
+    "Library"
+  ],
+  "identity": "Korexio.Prototype",
+  "name": "Prototype Template",
+  "shortName": "prototype",
+  "sourceName": "Korexio.Prototype",
+  "preferNameDirectory": true
+}
