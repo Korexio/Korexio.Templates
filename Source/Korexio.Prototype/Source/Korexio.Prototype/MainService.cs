@@ -9,11 +9,11 @@ namespace Korexio.Prototype;
 
 public sealed class MainService : BackgroundService
 {
-  private readonly IHost _host;
-  private readonly MainServiceConfiguration _configuration;
-  private readonly ILogger _logger;
+  private readonly IHost _Host;
+  private readonly MainServiceConfiguration _Configuration;
+  private readonly ILoggerFactory _LoggerFactory;
 
-  public MainService(IHost host, IOptions<MainServiceConfiguration> options, ILogger<MainService> logger)
+  public MainService(IHost host, IOptions<MainServiceConfiguration> options, ILoggerFactory loggerFactory)
   {
     if (host == null)
     {
@@ -25,25 +25,26 @@ public sealed class MainService : BackgroundService
       throw new ArgumentNullException(nameof(options));
     }
 
-    if (logger == null)
+    if (loggerFactory == null)
     {
-      throw new ArgumentNullException(nameof(logger));
+      throw new ArgumentNullException(nameof(loggerFactory));
     }
 
-    _host = host;
-    _configuration = options.Value;
-    _logger = logger;
+    _Host = host;
+    _Configuration = options.Value;
+    _LoggerFactory = loggerFactory;
   }
 
   protected override async Task ExecuteAsync(CancellationToken stoppingToken)
   {
-    _logger.LogStarted("Main Service");
+    var logger = _LoggerFactory.CreateLogger<MainService>();
+    logger.LogStarted("Main Service");
 
-    _logger.LogUsingConfigurationValue(nameof(_configuration.Delay), _configuration.Delay);
-    await Task.Delay(_configuration.Delay, stoppingToken).ConfigureAwait(false);
+    logger.LogUsingConfigurationValue(nameof(_Configuration.Delay), _Configuration.Delay);
+    await Task.Delay(_Configuration.Delay, stoppingToken).ConfigureAwait(false);
 
-    _logger.LogStopped("Main Service");
+    logger.LogStopped("Main Service");
 
-    await _host.StopAsync(stoppingToken).ConfigureAwait(false);
+    await _Host.StopAsync(stoppingToken).ConfigureAwait(false);
   }
 }
