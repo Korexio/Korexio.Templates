@@ -116,8 +116,8 @@ jobs:
           name: NuGet Package
           path: ./Artifacts/Korexio.Templates/bin
 
-      - name: dotnet new --install
-        run: dotnet new --install ./Artifacts/Korexio.Templates/bin/Korexio.Templates.*.nupkg
+      - name: dotnet new install
+        run: dotnet new install ./Artifacts/Korexio.Templates/bin/Korexio.Templates.*.nupkg
 
       - name: dotnet new prototype
         run: dotnet new prototype --output ./Artifacts/My.Demo --name My.Demo
@@ -128,8 +128,8 @@ jobs:
       - name: dotnet test
         run: dotnet test ./Artifacts/My.Demo/Source/My.Demo.sln --no-build
 
-      - name: dotnet new --uninstall
-        run: dotnet new --uninstall Korexio.Templates
+      - name: dotnet new uninstall
+        run: dotnet new uninstall Korexio.Templates
 
   Publish:
     needs:
