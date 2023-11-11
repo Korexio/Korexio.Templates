@@ -48,4 +48,7 @@ dotnet_diagnostic.CA1509.severity = warning
 ###############################################################################################################################
 
 # IDE0046: Convert to conditional expression
-dotnet_diagnostic.IDE0046.severity = warning
+dotnet_diagnostic.IDE0046.severity = none
+
+# IDE0210: Convert to top-level statements
+dotnet_diagnostic.IDE0210.severity = none
