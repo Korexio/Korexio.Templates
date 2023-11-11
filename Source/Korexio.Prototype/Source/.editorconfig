@@ -15,20 +15,46 @@ csharp_style_throw_expression = false
 # IDE0160: Convert to block scoped namespace
 csharp_style_namespace_declarations = file_scoped
 
-# Naming Rule: Field
 
-dotnet_naming_rule.method_should_be_field.severity = suggestion
-dotnet_naming_rule.method_should_be_field.symbols = field
-dotnet_naming_rule.method_should_be_field.style = field
+# Code Style: Naming Rules
+
+dotnet_naming_rule.field.severity = suggestion
+dotnet_naming_rule.field.symbols = field
+dotnet_naming_rule.field.style = field
+
+dotnet_naming_rule.field.severity = suggestion
+dotnet_naming_rule.field.symbols = static_readonly_property
+dotnet_naming_rule.field.style = pascal_case
+
+dotnet_naming_rule.field.severity = suggestion
+dotnet_naming_rule.field.symbols = const
+dotnet_naming_rule.field.style = pascal_case
+
+# Code Style: Symbol Groups
 
 dotnet_naming_symbols.field.applicable_kinds = field
 dotnet_naming_symbols.field.applicable_accessibilities = *
 dotnet_naming_symbols.field.required_modifiers =
 
+dotnet_naming_symbols.static_readonly_property.applicable_kinds = property
+dotnet_naming_symbols.static_readonly_property.applicable_accessibilities = *
+dotnet_naming_symbols.static_readonly_property.required_modifiers = static,readonly
+
+dotnet_naming_symbols.const.applicable_kinds = field
+dotnet_naming_symbols.const.applicable_accessibilities = *
+dotnet_naming_symbols.const.required_modifiers = const
+
+# Code Style: Naming Styles
+
 dotnet_naming_style.field.required_prefix = _
 dotnet_naming_style.field.required_suffix =
 dotnet_naming_style.field.word_separator =
 dotnet_naming_style.field.capitalization = pascal_case
+
+dotnet_naming_style.pascal_case.required_prefix =
+dotnet_naming_style.pascal_case.required_suffix =
+dotnet_naming_style.pascal_case.word_separator =
+dotnet_naming_style.pascal_case.capitalization = pascal_case
 
 
 [*_Tests.cs]
