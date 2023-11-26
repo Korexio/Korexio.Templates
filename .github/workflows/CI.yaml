@@ -98,7 +98,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: NuGet Package
-          path: ./Artifacts/Korexio.Templates/bin/Korexio.Templates.*.nupkg
+          path: ./Artifacts/Korexio.Templates/package/release/Korexio.Templates.*.nupkg
           if-no-files-found: error
           retention-days: 1
 
