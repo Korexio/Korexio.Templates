@@ -8,9 +8,9 @@ namespace Korexio.Prototype;
 internal class MainServiceConfiguration : IValidatableObject
 {
   [Range(1, 10)]
-  public int Count { get; set; }
+  public int Count { get; init; }
 
-  public TimeSpan Delay { get; set; }
+  public TimeSpan Delay { get; init; }
 
   public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
   {

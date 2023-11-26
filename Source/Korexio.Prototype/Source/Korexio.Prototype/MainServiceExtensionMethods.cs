@@ -8,10 +8,7 @@ internal static class MainServiceExtensionMethods
 {
   public static IHostBuilder UseMainService(this IHostBuilder hostBuilder)
   {
-    if (hostBuilder == null)
-    {
-      throw new ArgumentNullException(nameof(hostBuilder));
-    }
+    ArgumentNullException.ThrowIfNull(hostBuilder);
 
     return hostBuilder.ConfigureServices((hostBuilderContext, serviceCollection) => {
       _ = serviceCollection.AddHostedService<MainService>();

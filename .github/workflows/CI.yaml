@@ -23,10 +23,10 @@ jobs:
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
-      - name: Set up .NET (7.0)
+      - name: Set up .NET (8.0)
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: 7.0.x
+          dotnet-version: 8.0.x
 
       - name: Create NuGet package
         run: |
@@ -107,10 +107,10 @@ jobs:
     runs-on: windows-latest
     steps:
 
-      - name: Set up .NET (7.0)
+      - name: Set up .NET (8.0)
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: 7.0.x
+          dotnet-version: 8.0.x
 
       - name: Set up .NET (6.0)
         uses: actions/setup-dotnet@v2
@@ -196,10 +196,10 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
 
-      - name: Set up .NET (7.0)
+      - name: Set up .NET (8.0)
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: 7.0.x
+          dotnet-version: 8.0.x
 
       - name: Download NuGet package
         uses: actions/download-artifact@v3

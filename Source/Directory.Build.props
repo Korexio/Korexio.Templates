@@ -5,10 +5,7 @@
     <ArtifactsPath>$([MSBuild]::NormalizeDirectory($(MSBuildThisFileDirectory), '..', 'Artifacts', $(MSBuildProjectName)))</ArtifactsPath>
 
     <BaseIntermediateOutputPath>$([MSBuild]::NormalizeDirectory($(ArtifactsPath), 'obj'))</BaseIntermediateOutputPath>
-    <IntermediateOutputPath>$([MSBuild]::NormalizeDirectory($(BaseIntermediateOutputPath), $(Configuration)))</IntermediateOutputPath>
-
     <BaseOutputPath>$([MSBuild]::NormalizeDirectory($(ArtifactsPath), 'bin'))</BaseOutputPath>
-    <OutputPath>$([MSBuild]::NormalizeDirectory($(BaseOutputPath), $(Configuration)))</OutputPath>
 
   </PropertyGroup>
 
@@ -20,7 +17,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFrameworks>net7.0;net6.0;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>net8.0;net6.0</TargetFrameworks>
   </PropertyGroup>
 
 </Project>

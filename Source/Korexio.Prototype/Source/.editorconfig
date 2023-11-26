@@ -457,6 +457,9 @@ csharp_style_prefer_tuple_swap = true:warning
 
 csharp_style_prefer_top_level_statements = false:warning
 
+# IDE0290: Use primary constructor
+csharp_style_prefer_primary_constructors = false:warning
+
 # IDE1005: Use conditional delegate call
 
 csharp_style_conditional_delegate_call = true:warning
